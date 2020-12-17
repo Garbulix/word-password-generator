@@ -1,4 +1,4 @@
-# word generator from simple-apps-for-testing purposes
+# word generator from simple-apps-for-testing-purposes repository
 
 import random
 

@@ -6,6 +6,7 @@ TODO:
 - make config file or take configs from CLI arguments
 - GUI
 - make directory with words library
+- create word_generator as a submodule
 """
 
 # CONFIGS #
