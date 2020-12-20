@@ -1,5 +1,5 @@
-import word_generator
-import random
+import WordLibrary
+
 
 """
 TODO:
