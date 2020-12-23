@@ -3,11 +3,7 @@ import Password
 import WordDictionary
 
 """
-TODO:
-- class and method comments
-- tests
-- GUI with chriskiehl/Gooey 
-- option do specify max word length
+TODO class and method comments
 """
 
 cli_arguments = sys.argv[:]
