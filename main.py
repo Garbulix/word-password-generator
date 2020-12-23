@@ -2,10 +2,6 @@ import sys
 import Password
 import WordDictionary
 
-"""
-TODO class and method comments
-"""
-
 # CLI arguments #
 cli_arguments = sys.argv[:]
 DICT_PATH = cli_arguments[1]
