@@ -2,8 +2,10 @@ import random
 import WordDictionary as wd
 
 class WordPassword():
-    def __init__(self, dictionary=wd.WordDictionary(), no_of_words=0, capitalize=False, 
-                separator='-', numbers_to_insert=0):
+    """container for password and their generator"""
+
+    def __init__(self, dictionary=wd.WordDictionary(), no_of_words=0, 
+                 capitalize=False, separator='-', numbers_to_insert=0):
         self.dictionary = dictionary
         self.no_of_words = no_of_words
         self.capitalize = capitalize
@@ -13,12 +15,12 @@ class WordPassword():
         self.password = ''
         self.is_generated = False
 
-        if len(dictionary) > 0:
+        if len(dictionary):
             self.regenerate_password()
             self.is_generated = True
 
     def regenerate_password(self):
-        """generate new password with whole new drawn words"""
+        """(re)generate new password - randomly choose new words with every function call"""
 
         random.seed()
         available_words = len(self.dictionary)
@@ -38,4 +40,3 @@ class WordPassword():
                 words_to_use[word_index] += str(random.randint(0, 9))
         
         self.password = self.separator.join(words_to_use)
-
