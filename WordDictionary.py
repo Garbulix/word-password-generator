@@ -1,7 +1,7 @@
 import random
 
-class WordLibrary():
-    """class with words loaded from given file"""
+class WordDictionary():
+    """class with words loaded from specified and prepared file"""
 
     def __init__(self, path = ''):
         self.is_imported = False
@@ -15,8 +15,9 @@ class WordLibrary():
                     self.is_imported = True
                     self.dictionary_name = self.words[0]
                     self.words = self.words[2:]     # toss dict name and '#' line
-            except IOError:
-                print('File not found, sorry!')
+            except FileNotFoundError:
+                print('ERROR: Dictionary file not found, sorry!')
+                raise SystemExit()
 
     def __getitem__(self, index):
         return self.words[index]

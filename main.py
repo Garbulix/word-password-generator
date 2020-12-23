@@ -1,12 +1,12 @@
 import sys
 import random
-import WordLibrary
+import WordDictionary
 
 """
 TODO:
-- make config file or take configs from CLI arguments
-- GUI
-- create word_generator as a submodule
+- class and method comments
+- tests
+- GUI with chriskiehl/Gooey 
 - option do specify max word length
 """
 
@@ -18,7 +18,6 @@ SEPARATOR = cli_arguments[2]
 CAPITALIZE = bool(cli_arguments[3])
 NUMBERS_TO_INSERT = int(cli_arguments[4])
 PATH = '/home/bartek/Programowanie/word-password-generator/dictionaries/RANDOM.txt'
-# TODO do I need random.seed()?
 # CONFIGS #
 
 # TODO clean that mess
@@ -45,4 +44,4 @@ def generate_password(word_dictionary, no_of_words):
 
 # ===================================
 
-print(generate_password(WordLibrary.WordLibrary(PATH), WORDS_IN_PASS))
+print(generate_password(WordDictionary.WordDictionary(PATH), WORDS_IN_PASS))
