@@ -26,7 +26,5 @@ Ebolohi197494-Ikyd8247-Budo93-Aciwas95-Teti061
 ```
 
 ### TODO
-- tests
 - GUI with chriskiehl/Gooey or something other
-- create Polish dictionary
 - option do specify max word length
