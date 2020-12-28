@@ -1,10 +1,9 @@
 import random
 
 class WordDictionary():
-    """class with words loaded from specified and prepared file"""
+    """class with words loaded from specified and prepared file. Aimed to be read-only"""
 
     def __init__(self, path = ''):
-        """class is aimed to be read-only"""
 
         self._words = []
 
