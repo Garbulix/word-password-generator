@@ -11,6 +11,7 @@ from gi.repository import Gtk
 TODO:
 - use DICT_PATH in more elegant way
 - change available numbers to one switch
+- use it as a module for main.py
 - just clean up the mess
 """
 
