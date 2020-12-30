@@ -12,6 +12,8 @@ NUMBERS_TO_INSERT = int(cli_arguments[5])
 # CLI arguments #
 
 # ===================================
-dictionary = WordDictionary.WordDictionary(DICT_PATH)
-sample_password = Password.WordPassword(dictionary, WORDS_IN_PASS, CAPITALIZE, SEPARATOR, NUMBERS_TO_INSERT)
-print(sample_password.password)
+
+if __name__ == '__main__':
+    dictionary = WordDictionary.WordDictionary(DICT_PATH)
+    sample_password = Password.WordPassword(dictionary, WORDS_IN_PASS, CAPITALIZE, SEPARATOR, NUMBERS_TO_INSERT)
+    print(sample_password.password)
