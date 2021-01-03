@@ -36,6 +36,7 @@ class MainWindow(Gtk.Window):
             resizable=False)
         self.set_border_width(10)
         self.set_size_request(500, 100)
+        self.set_position(Gtk.WindowPosition.CENTER)
 
         default_number_of_words = 4
         self.demanded_words = default_number_of_words
@@ -49,6 +50,7 @@ class MainWindow(Gtk.Window):
         self.output = Gtk.Entry()
         self.output.set_text("")
         self.output.set_editable(False)
+        
         demanded_words_box = Gtk.Box(spacing=10)
         capitalize_box = Gtk.Box(spacing=10)
         separator_box = Gtk.Box(spacing=10)
