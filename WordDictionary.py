@@ -4,6 +4,7 @@ class WordDictionary():
     """class with words loaded from specified and prepared file. Aimed to be read-only"""
 
     def __init__(self, path = ''):
+        """import words from wordfile"""
 
         self._words = []
 
@@ -26,9 +27,13 @@ class WordDictionary():
         return self._words[index]
 
     def __len__(self):
-        """return number of _words in dictionary"""
+        """return number of words in dictionary"""
         return len(self._words)
 
     def clear(self):
         """clears/resets the container"""
         self._words.clear()
+
+    def return_wordlist(self):
+        """return copy of the list with all words"""
+        return self._words[:]
