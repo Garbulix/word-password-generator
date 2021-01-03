@@ -1,3 +1,6 @@
+# THIS README IS OUTDATED, BUT IT WILL BE UPDATED SOON
+***
+
 # word-password-generator
 
 ![xkcd password strength](https://imgs.xkcd.com/comics/password_strength.png)
