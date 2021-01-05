@@ -2,10 +2,11 @@ import random
 import WordDictionary as wd
 
 class WordPassword():
-    """container for password and their generator"""
+    """container for generating password and storing it"""
 
     def __init__(self, dictionary=wd.WordDictionary(), no_of_words=0, 
                  capitalize=False, separator='-', numbers_to_insert=0):
+
         self.dictionary = dictionary
         self.no_of_words = no_of_words
         self.capitalize = capitalize

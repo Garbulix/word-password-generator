@@ -29,5 +29,4 @@ parser.add_argument('--number',
                           "Put True of False"))
 
 args = parser.parse_args()
-
-print(vars(args))
+args_dict = vars(args)
