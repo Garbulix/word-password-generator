@@ -1,45 +1,34 @@
 import gi
 from gi.repository import Gtk
-#import sys # TODO is sys needed?
+#import sys 
+# TODO is sys needed?
 
 import WordDictionary
 import Password
+import configs
 
 gi.require_version("Gtk", "3.0")
 
 """
 TODO:
 - use DICT_PATH in more elegant way
-- change available numbers to one switch
-- use it as a module for main.py
-- just clean up the mess
-
-https://gitlab.gnome.org/GNOME/gnome-tweaks/-/blob/master/gtweak/tweakview.py
 """
 
-GUI_prefs = {"dictionary": "NOT_SET",
-             "no_of_words": 4,
-             "separator":"-",
-             "capitalize": False,
-             "insert_number": False}
-
 class MainWindow(Gtk.Window):
-    #
-    # guitext_(blahblah) - some kind of interface text, first step for making program international 
-    #
+    """
+    Main program's window with output field and clickable preferences
+    """
+    # guitext_something - some kind of interface text, my step for making program international in the future
     guitext_window_label = "Word Password Generator 0.1"
-    guitext_no_of_words = "Liczba słów"
-    guitext_capitalize = "Duże pierwsze litery"
-    guitext_separator = "Separator słów"
-    guitext_numbers_to_insert = "Umieść cyfrę"
-    guitext_generate_button = "Generuj hasło"
+    guitext_no_of_words = "Words in password"
+    guitext_capitalize = "Capitalize words"
+    guitext_separator = "Separator"
+    guitext_numbers_to_insert = "Insert digit"
+    guitext_generate_button = "Generate password"
+    guitext_select_dict = "Select dictionary"
     
 
     def __init__(self):
-        if GUI_prefs["dictionary"] == "NOT_SET":
-            print("GUI preferences not initialised!")
-            raise SystemExit
-        
         Gtk.Window.__init__(self, 
                             title=self.guitext_window_label,
                             resizable=False)
@@ -52,7 +41,6 @@ class MainWindow(Gtk.Window):
         self.capitalize = False
         self.separator = "-"
         self.numbers_to_insert = 0
-        self.available_separators = ["-", "_", "*", "#"]
 
         # PASSWORD OUTPUT
         self.output = Gtk.Entry()
@@ -70,21 +58,34 @@ class MainWindow(Gtk.Window):
 
         # PASSPHRASE PREFERENCES BOX
         # TODO saving and loading previous states
+        self.selected_dict_hbox = Gtk.Box(spacing=10)
         self.demanded_words_hbox = Gtk.Box(spacing=10)
         self.capitalize_hbox = Gtk.Box(spacing=10)
         self.separator_hbox = Gtk.Box(spacing=10)
         self.insert_number_hbox = Gtk.Box(spacing=10)
 
-        self.passphrase_preferences_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL,spacing=10)
-        self.passphrase_preferences_box.pack_start(self.demanded_words_hbox, False, False, 0)
-        self.passphrase_preferences_box.pack_start(self.capitalize_hbox, False, False, 0)
-        self.passphrase_preferences_box.pack_start(self.separator_hbox, False, False, 0)
-        self.passphrase_preferences_box.pack_start(self.insert_number_hbox, False, False, 0)
+        self.passphrase_preferences_vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL,spacing=10)
+        self.passphrase_preferences_vbox.pack_start(self.selected_dict_hbox, False, False, 0)
+        self.passphrase_preferences_vbox.pack_start(self.demanded_words_hbox, False, False, 0)
+        self.passphrase_preferences_vbox.pack_start(self.capitalize_hbox, False, False, 0)
+        self.passphrase_preferences_vbox.pack_start(self.separator_hbox, False, False, 0)
+        self.passphrase_preferences_vbox.pack_start(self.insert_number_hbox, False, False, 0)
+
+        ### selected dictionary box
+        selected_dict_label = Gtk.Label(label=self.guitext_select_dict)
+        dict_chose_box = Gtk.ComboBoxText()
+        dict_chose_box.set_entry_text_column(0)
+        dict_chose_box.connect("changed", self._on_dict_chosed)
+        for dictionary in configs.GUI_availables["dicts"]:
+            dict_chose_box.append_text(dictionary)
+        dict_chose_box.set_active(-1)
+        self.separator_hbox.pack_start(selected_dict_label, False, False, 0)
+        self.separator_hbox.pack_end(dict_chose_box, False, False, 0)
 
         ### demanded words box
         demanded_words_label = Gtk.Label(label=self.guitext_no_of_words)
         self.words_spin = Gtk.SpinButton()
-        words_spin_adj = Gtk.Adjustment(value=GUI_prefs["no_of_words"], 
+        words_spin_adj = Gtk.Adjustment(value=configs.GUI_prefs["no_of_words"], 
                                         lower=1, 
                                         upper=12, 
                                         step_increment=1)
@@ -95,17 +96,17 @@ class MainWindow(Gtk.Window):
 
         ### capitalize words box
         capitalize_label = Gtk.Label(label=self.guitext_capitalize)
-        capitalize_switch = Gtk.Switch()
-        capitalize_switch.connect("notify::active", self._on_capitalize_switch_toggled)
+        self.capitalize_switch = Gtk.Switch()
+        #capitalize_switch.connect("notify::active", self._on_capitalize_switch_toggled)
         self.capitalize_hbox.pack_start(capitalize_label, False, False, 0)
-        self.capitalize_hbox.pack_end(capitalize_switch, False, False, 0)
+        self.capitalize_hbox.pack_end(self.capitalize_switch, False, False, 0)
 
         ### chosed separator box
         separator_label = Gtk.Label(label=self.guitext_separator)
         separator_chose_box = Gtk.ComboBoxText()
         separator_chose_box.set_entry_text_column(0)
         separator_chose_box.connect("changed", self._on_separator_chosed)
-        for separator in self.available_separators:
+        for separator in configs.GUI_availables["separators"]:
             separator_chose_box.append_text(separator)
         separator_chose_box.set_active(0)
         self.separator_hbox.pack_start(separator_label, False, False, 0)
@@ -128,16 +129,19 @@ class MainWindow(Gtk.Window):
         main_vbox.pack_start(self.output, True, True, 0)
         main_vbox.pack_start(self.generate_button_box, True, True, 0)
         main_vbox.pack_start(divider, True, True, 0)
-        main_vbox.pack_start(self.passphrase_preferences_box, True, True, 0)
+        main_vbox.pack_start(self.passphrase_preferences_vbox, True, True, 0)
+
+    def _on_dict_chosed(self, combo):
+        configs.GUI_prefs["dictionary"] = configs.generate_dict_path(combo.get_active_text)
 
     def _on_word_value_changed(self, scroll):
         self.demanded_words = self.words_spin.get_value_as_int()
 
     def _on_generate_clicked(self, button):
-        dictionary = WordDictionary.WordDictionary(GUI_prefs["dictionary"])
+        dictionary = WordDictionary.WordDictionary(configs.GUI_prefs["dictionary"])
         new_password = Password.WordPassword(dictionary, 
-                                             self.demanded_words, 
-                                             self.capitalize, 
+                                             self.words_spin.get_value_as_int(), 
+                                             int(switch.get_active()), 
                                              self.separator, 
                                              self.numbers_to_insert)
         self.output.set_text(new_password.password)
