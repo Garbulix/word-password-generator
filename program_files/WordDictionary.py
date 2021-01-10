@@ -4,7 +4,7 @@ class WordDictionary():
     """class with words loaded from specified, prepared file. 
     Works similarly to list. Aimed to be read-only"""
 
-    def __init__(self, path = ''):
+    def __init__(self, path = ""):
         """import words from wordfile in path.
         Object can be made without path - then it will be empty"""
 
@@ -21,7 +21,7 @@ class WordDictionary():
         """return number of words in dictionary"""
         return len(self._words)
 
-    def import_from_file(self, path=''):
+    def import_from_file(self, path=""):
         """import new wordfile. Clears existing words."""
         self.clear()
 
@@ -29,13 +29,13 @@ class WordDictionary():
             with open(path) as dict_file:
                 all_file_lines = dict_file.read().splitlines()
                 for line in all_file_lines:
-                    # toss all lines starting with '#'
-                    if line[0] == '#':
+                    # toss all lines starting with "#"
+                    if line[0] == "#":
                         continue
                     else:
                         self._words.append(line)
         except FileNotFoundError:
-            print('ERROR: Dictionary file not found, sorry!')
+            print("ERROR: Dictionary file not found, sorry!")
             raise SystemExit()
 
     def clear(self):
