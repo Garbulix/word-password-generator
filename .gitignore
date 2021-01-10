@@ -1,5 +1,3 @@
-_tmp/
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -129,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# CUSTOM FILES AND DIRECTORIES
+.vscode/launch.json
+_tmp/
