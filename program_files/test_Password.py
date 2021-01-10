@@ -6,8 +6,8 @@ import WordDictionary as wd
 
 class TestWordPassword(unittest.TestCase):
 
-    def setUp(self, no_of_words=5, capitalize=True, separator='-', numbers_to_insert=1):
-        self.test_dict_path = './test_files/RANDOM.txt'
+    def setUp(self, no_of_words=5, capitalize=True, separator="-", numbers_to_insert=1):
+        self.test_dict_path = "./test_files/RANDOM.txt"
         self.test_dict = wd.WordDictionary(self.test_dict_path)
         self.test_password = WordPassword(self.test_dict, no_of_words, capitalize, separator, 
             numbers_to_insert)
@@ -22,7 +22,7 @@ class TestWordPassword(unittest.TestCase):
         for i in range(self.number_of_tests):
             random_number = random.randint(min_words, max_words)
             self.setUp(no_of_words=random_number)
-            used_separator = self.test_password.separator
+            used_separator = self.t"est_password.separator
             words = self.test_password.password.split(used_separator)
 
             self.assertEqual(random_number, len(words))
@@ -57,5 +57,5 @@ class TestWordPassword(unittest.TestCase):
 
 # ----------
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

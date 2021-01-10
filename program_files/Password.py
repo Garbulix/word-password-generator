@@ -5,7 +5,7 @@ class WordPassword():
     """container for generating password and storing it"""
 
     def __init__(self, dictionary=wd.WordDictionary(), no_of_words=0, 
-                 capitalize=False, separator='-', numbers_to_insert=0):
+                 capitalize=False, separator="-", numbers_to_insert=0):
 
         self.dictionary = dictionary
         self.no_of_words = no_of_words
@@ -13,7 +13,7 @@ class WordPassword():
         self.separator = separator
         self.numbers_to_insert = numbers_to_insert
         
-        self.password = ''
+        self.password = ""
         self.is_generated = False
 
         if len(dictionary):

@@ -2,26 +2,26 @@ import argparse
 
 parser = argparse.ArgumentParser(description="Generate secure and easy to learn passphrases.")
 
-parser.add_argument('--dict', 
+parser.add_argument("--dict", 
                     required=True, 
                     type=str,
-                    help="Specify which wordlist you'd like to use.")
-parser.add_argument('--words', 
+                    help="Specify which wordlist you"d like to use.")
+parser.add_argument("--words", 
                     required=True, 
                     type=int,
                     help="Specify how many words you need to use in your passphrase.")
-parser.add_argument('--sep', 
+parser.add_argument("--sep", 
                     required=False, 
-                    default='-',
+                    default="-",
                     type=str,
                     help="Which word separator should be used.")
-parser.add_argument('--cap', 
+parser.add_argument("--cap", 
                     required=False, 
                     default=False,
                     type=bool,
                     help=("Define whether used words should be capitalized "
                           "(first letter big). Put True or False"))
-parser.add_argument('--number', 
+parser.add_argument("--number", 
                     required=False, 
                     default=False,
                     type=bool,

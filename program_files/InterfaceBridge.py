@@ -11,7 +11,7 @@ import WordDictionary as wd
 IB_DEFAULTS = {"dictionaries_path": "./dictionaries/",
                "dictionary": "NOT_SET",
                "word_count": 4,
-               "separator": '-',
+               "separator": "-",
                "capitalize": False,
                "insert_number": False,
                "recommended_separators": ["-", "_", "*", "#"]}
