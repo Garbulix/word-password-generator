@@ -5,10 +5,10 @@ It's purpose is making any interface creation easy.
 
 import os
 
-import res.Password
+import res.Password as Password
 import res.WordDictionary as wd
 
-IB_DEFAULTS = {"dictionaries_path": "./dictionaries/",
+IB_DEFAULTS = {"dictionaries_path": "./res/dictionaries/",
                "dictionary": "NOT_SET",
                "word_count": 4,
                "separator": "-",
@@ -47,7 +47,7 @@ class InterfaceBridge():
                                              separator=self._chosen_separator,
                                              numbers_to_insert=int(self._if_insert_number))
 
-        return new_password.password[:]
+        return str(new_password.password)
 
     def get_another_password(self,
                              dictionary_name,

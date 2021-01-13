@@ -9,8 +9,14 @@ import res.cli_parser as CLI
 # ===================================
 
 if __name__ == '__main__':
-    args = CLI.parser.parse_args()
-    args_dict = vars(args)
+    parsed_args = CLI.parser.parse_args()
+    args = vars(parsed_args) # convertion to dict
 
     program = controller.InterfaceBridge()
-    program.set_arguments(dictionary_name=args_dict["dict"])
+    program.set_arguments(dictionary_name=args["dict"],
+                          word_count=args["words"],
+                          separator=args["sep"],
+                          if_capitalize=args["capitalize"],
+                          if_insert_number=args["add_number"])
+
+    print(program.get_next_password())
