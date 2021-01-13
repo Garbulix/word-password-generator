@@ -13,4 +13,4 @@ Open app containing folder in terminal and put `python3 ./generator_cli.py [PARA
     
 ***
 
-\* I also wanted to learn Python.  
+\* Some days after starting project I found another GitHub repos with similar programs, but I still also wanted to learn Python, so I continued. 
