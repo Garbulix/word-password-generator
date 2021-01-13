@@ -5,8 +5,8 @@ It's purpose is making any interface creation easy.
 
 import os
 
-import Password
-import WordDictionary as wd
+import res.Password
+import res.WordDictionary as wd
 
 IB_DEFAULTS = {"dictionaries_path": "./dictionaries/",
                "dictionary": "NOT_SET",
@@ -38,8 +38,8 @@ class InterfaceBridge():
         
         return IB_DEFAULTS["recommended_separators"] 
 
-    def get_new_password(self):
-        """create passphrase and return it"""
+    def get_next_password(self):
+        """create passphrase with preferences set earlier and return it"""
 
         new_password = Password.WordPassword(dictionary=self._dictionaries[self._chosen_dict],
                                              no_of_words=self._word_count,
@@ -48,6 +48,17 @@ class InterfaceBridge():
                                              numbers_to_insert=int(self._if_insert_number))
 
         return new_password.password[:]
+
+    def get_another_password(self,
+                             dictionary_name,
+                             word_count,
+                             separator,
+                             if_insert_number,
+                             if_capitalize):
+        """create passphrase using given preferences (ignoring previously set prefs)"""
+        # TODO create it, it's just an idea at the moment
+
+        return "your-mom"
 
     def set_arguments(self, 
                       dictionary_name=None,

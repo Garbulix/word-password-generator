@@ -1,5 +1,5 @@
 import random
-import WordDictionary as wd
+import res.WordDictionary as wd
 
 class WordPassword():
     """container for generating password and storing it"""
