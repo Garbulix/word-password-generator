@@ -5,7 +5,7 @@ parser = argparse.ArgumentParser(description="Generate secure and easy to learn 
 parser.add_argument("--dict", 
                     required=True, 
                     type=str,
-                    help="Specify which wordlist you"d like to use.")
+                    help="Specify which wordlist you'd like to use.")
 parser.add_argument("--words", 
                     required=True, 
                     type=int,
