@@ -8,6 +8,8 @@ import os
 import res.Password as Password
 import res.WordDictionary as wd
 
+# TODO saving and loading session
+
 IB_DEFAULTS = {"dictionaries_path": "./res/dictionaries/",
                "dictionary": "NOT_SET",
                "word_count": 4,
