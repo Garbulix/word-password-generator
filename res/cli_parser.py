@@ -7,11 +7,12 @@ import argparse
 parser = argparse.ArgumentParser(description="Generate secure and easy to learn passphrases.")
 
 def str_to_bool(value):
-    if value.lower() in {'false', 'False' 'f', '0', 'no', 'n'}:
+    if value.lower() in {'false', 'f', '0', 'no', 'n'}:
         return False
-    elif value.lower() in {'true', 'False' 't', '1', 'yes', 'y'}:
+    elif value.lower() in {'true', 't', '1', 'yes', 'y'}:
         return True
-    raise ValueError(f'{value} is not a valid boolean value')
+    else: 
+        raise Exception(f'{value} is not a valid boolean value') from ValueError
 
 parser.add_argument("-d", "--dict", 
                     required=True, 
