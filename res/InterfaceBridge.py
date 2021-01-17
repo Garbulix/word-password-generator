@@ -45,8 +45,8 @@ class InterfaceBridge():
 
         new_password = Password.WordPassword(dictionary=self._dictionaries[self._chosen_dict],
                                              no_of_words=self._word_count,
-                                             capitalize=self._if_capitalize,
                                              separator=self._chosen_separator,
+                                             capitalize=self._if_capitalize,
                                              numbers_to_insert=int(self._if_insert_number))
 
         return str(new_password.password)
@@ -54,13 +54,19 @@ class InterfaceBridge():
     def get_another_password(self,
                              dictionary_name,
                              word_count,
-                             separator,
-                             if_insert_number,
-                             if_capitalize):
+                             used_separator,
+                             if_capitalize,
+                             if_insert_number):
         """create passphrase using given preferences (ignoring previously set prefs)"""
         # TODO create it, it's just an idea at the moment
 
-        return "your-mom"
+        new_password = Password.WordPassword(dictionary=self._dictionaries[dictionary_name],
+                                             no_of_words=word_count,
+                                             separator=used_separator,
+                                             capitalize=if_capitalize,
+                                             numbers_to_insert=int(if_insert_number))
+
+        return str(new_password.password)
 
     def set_arguments(self, 
                       dictionary_name=None,
