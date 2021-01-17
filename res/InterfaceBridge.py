@@ -58,7 +58,6 @@ class InterfaceBridge():
                              if_capitalize,
                              if_insert_number):
         """create passphrase using given preferences (ignoring previously set prefs)"""
-        # TODO create it, it's just an idea at the moment
 
         new_password = Password.WordPassword(dictionary=self._dictionaries[dictionary_name],
                                              no_of_words=word_count,
