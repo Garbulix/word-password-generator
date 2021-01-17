@@ -2,7 +2,7 @@
 
 import argparse
 
-# TODO translate
+# TODO translate, create class that converts passed argv
 
 parser = argparse.ArgumentParser(description="Generate secure and easy to learn passphrases.")
 
