@@ -1,6 +1,6 @@
 """
 Class for handling functions under the hood.
-It's purpose is making any interface creation easy.
+It's purpose is making interface creation easy.
 """
 
 import os
