@@ -22,5 +22,6 @@ if __name__ == '__main__':
                                             if_insert_number=args["add_number"])
 
         print(passwd)
-    except:
+    except Exception as e:
         print("Some error occured :<")
+        print("Error message:" + str(e))
