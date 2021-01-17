@@ -30,6 +30,45 @@ class InterfaceBridge():
 
         self._dictionaries = self._import_dictionaries()
 
+    def _import_dictionaries(self):
+        """import all dictionary files from default directory.
+        Function doesn't verify whether file is correct.
+        In current stage, in the directory should only be dictionary files
+        TODO some kind of veryfing directory"""
+
+        dictionary_list = os.listdir(self._dictionaries_path)
+        dictionaries = {}
+
+        # import all dicts in directory
+        for dictionary_name in dictionary_list:
+            imported_dict = wd.WordDictionary(str(self._dictionaries_path + dictionary_name))
+            dictionaries[dictionary_name] = imported_dict
+
+        # set first dictionary in keys() list as default
+        self._chosen_dict = list(dictionaries.keys())[0]
+
+        return dictionaries
+
+    def set_arguments(self, 
+                      dictionary_name=None,
+                      word_count=None,
+                      separator=None,
+                      if_insert_number=None,
+                      if_capitalize=None):
+        """set password/passphrase preferencies"""
+        # TODO arguments validation
+
+        if dictionary_name != None:
+            self._chosen_dict = dictionary_name
+        if word_count != None:
+            self._word_count = word_count
+        if separator != None:
+            self._chosen_separator = separator
+        if if_insert_number != None:
+            self._if_insert_number = if_insert_number
+        if if_capitalize != None:
+            self._if_capitalize = if_capitalize
+
     def get_available_dictionaries(self):
         """return list with available dictionaries"""
 
@@ -67,26 +106,6 @@ class InterfaceBridge():
 
         return str(new_password.password)
 
-    def set_arguments(self, 
-                      dictionary_name=None,
-                      word_count=None,
-                      separator=None,
-                      if_insert_number=None,
-                      if_capitalize=None):
-        """set password/passphrase preferencies"""
-        # TODO arguments validation
-
-        if dictionary_name != None:
-            self._chosen_dict = dictionary_name
-        if word_count != None:
-            self._word_count = word_count
-        if separator != None:
-            self._chosen_separator = separator
-        if if_insert_number != None:
-            self._if_insert_number = if_insert_number
-        if if_capitalize != None:
-            self._if_capitalize = if_capitalize
-
     def get_chosen_dictionary(self):
         """get name of currently used dictionary"""
 
@@ -111,22 +130,3 @@ class InterfaceBridge():
         """get info about inserting number activation (returned bool value)"""
 
         return self._if_insert_number
-
-    def _import_dictionaries(self):
-        """import all dictionary files from default directory.
-        Function doesn't verify whether file is correct.
-        In current stage, in the directory should only be dictionary files
-        TODO some kind of veryfing directory"""
-
-        dictionary_list = os.listdir(self._dictionaries_path)
-        dictionaries = {}
-
-        # import all dicts in directory
-        for dictionary_name in dictionary_list:
-            imported_dict = wd.WordDictionary(str(self._dictionaries_path + dictionary_name))
-            dictionaries[dictionary_name] = imported_dict
-
-        # set first dictionary in keys() list as default
-        self._chosen_dict = list(dictionaries.keys())[0]
-
-        return dictionaries
