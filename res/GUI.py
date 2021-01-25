@@ -19,7 +19,9 @@ class MainWindow(Gtk.Window):
     guitext_select_dict = "Select dictionary"
 
     def __init__(self, controller):
-        """creating window using InterfaceBridge object as controller"""
+        """creating window using InterfaceBridge object as MVC-ish controller"""
+
+        # TODO check if every self. need to be self.
 
         self._controller = controller
 
@@ -83,6 +85,22 @@ class MainWindow(Gtk.Window):
         self.demanded_words_hbox.pack_start(demanded_words_label, False, False, 0)
         self.demanded_words_hbox.pack_end(self.words_spin, False, False, 0)
 
+        ### capitalize words box
+        capitalize_label = Gtk.Label(label=self.guitext_capitalize)
+        self.capitalize_switch = Gtk.Switch()
+        self.capitalize_switch.connect("notify::active", self._on_capitalize_switch_toggled)
+        self.capitalize_switch.set_active(self._controller.get_capitalize_mode())
+        self.capitalize_hbox.pack_start(capitalize_label, False, False, 0)
+        self.capitalize_hbox.pack_end(self.capitalize_switch, False, False, 0)
+
+        ### insert number box
+        insert_number_label = Gtk.Label(label=self.guitext_numbers_to_insert)
+        self.insert_number_switch = Gtk.Switch()
+        self.insert_number_switch.connect("notify::active", self._on_number_switch_toggled)
+        self.insert_number_switch.set_active(self._controller.get_insert_number_mode())
+        self.insert_number_hbox.pack_start(insert_number_label, False, False, 0)
+        self.insert_number_hbox.pack_end(self.insert_number_switch, False, False, 0)
+
         # PACKING ALL TOGETHER
         main_vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
         self.add(main_vbox)
@@ -102,3 +120,9 @@ class MainWindow(Gtk.Window):
 
     def _on_generate_clicked(self, button):
         self.output.set_text(self._controller.get_next_password())
+
+    def _on_capitalize_switch_toggled(self, switch, gparam):
+        self._controller.set_arguments(if_capitalize=switch.get_active())
+
+    def _on_number_switch_toggled(self, switch, gparam):
+        self._controller.set_arguments(if_insert_number=switch.get_active())
