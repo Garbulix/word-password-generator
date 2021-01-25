@@ -8,7 +8,7 @@ gi.require_version("Gtk", "3.0")
 class MainWindow(Gtk.Window):
     """Main program's window with output field and clickable preferences"""
     # guitext_something - some kind of interface text, my step for making program international in the future
-    guitext_window_label = "Word Password Generator 0.1"
+    guitext_window_label = "Word Password Generator"
     guitext_no_of_words = "Words in password"
     guitext_capitalize = "Capitalize words"
     guitext_separator = "Separator"
