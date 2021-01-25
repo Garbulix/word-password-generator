@@ -16,10 +16,10 @@ if __name__ == '__main__':
         program = controller.InterfaceBridge()
         
         passwd = program.get_another_password(dictionary_name=args["dict"],
-                                            word_count=args["words"],
-                                            used_separator=args["sep"],
-                                            if_capitalize=args["capitalize"],
-                                            if_insert_number=args["add_number"])
+                                              word_count=args["words"],
+                                              used_separator=args["sep"],
+                                              if_capitalize=args["capitalize"],
+                                              if_insert_number=args["add_number"])
 
         print(passwd)
     except Exception as e:
